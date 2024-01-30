@@ -1,0 +1,1 @@
+export const CREATE_MOVIE="https://asia-south1.gcp.data.mongodb-api.com/app/api_application-sicxx/endpoint/createMovie";
