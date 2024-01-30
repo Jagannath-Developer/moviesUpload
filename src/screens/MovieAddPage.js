@@ -24,7 +24,9 @@ export default function MovieAddPage() {
   const [magneticQuality, setMagneticQuality] = useState("");
   const [magneticSize, setMagneticSize] = useState("");
   const [magneticList, setMagneticList] = useState([]);
-  
+  const [run, setRun] = useState(false);
+  const [failed, setFailed] = useState(false);
+
   const url =
     "https://asia-south1.gcp.data.mongodb-api.com/app/api_application-sicxx/endpoint/createMovie";
   // const handleSubmit = async () => {
@@ -74,9 +76,11 @@ export default function MovieAddPage() {
       .post(url, body)
       .then(function (response) {
         console.log(response);
+        setRun(true);
       })
       .catch(function (error) {
         console.log(error.message);
+        setFailed(true);
       });
   };
   return (
@@ -471,6 +475,16 @@ export default function MovieAddPage() {
           Submit
         </button>
       </div>
+      {run && (
+        <div className="alert alert-success mt-3" role="alert">
+          Successfully Saved !
+        </div>
+      )}
+      {failed && (
+        <div className="alert alert-danger mt-3" role="alert">
+          failed to Upload !
+        </div>
+      )}
     </div>
   );
 }
